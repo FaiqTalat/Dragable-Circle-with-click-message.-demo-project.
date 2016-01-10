@@ -27,14 +27,18 @@ class ViewController: UIViewController {
     
         self.movableCircle.layer.cornerRadius = self.movableCircle.frame.width / 2
         
-        self.movableCircle.translatesAutoresizingMaskIntoConstraints()
+        self.movableCircle.translatesAutoresizingMaskIntoConstraints = true
         
     }
 
     func touchMoved(sender: UIPanGestureRecognizer){
     let location = sender.locationInView(self.view)
-        println("location: \(location), sender.state: \(sender.state.hashValue)")
-        self.movableCircle.center = location
+        print("location: \(location), sender.state: \(sender.state.hashValue)")
+        
+        UIView.animateWithDuration(0.01) { () -> Void in
+            self.movableCircle.center = location
+        }
+        
         
     }
     func tapOnCircle(){
@@ -44,11 +48,6 @@ class ViewController: UIViewController {
         }
         alert.addAction(okAction)
         self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
